@@ -4,7 +4,12 @@ angular.module('songhop.controllers', ['ionic', 'songhop.services'])
 /*
 Controller for the discover page
 */
-.controller('DiscoverCtrl', function($scope, $timeout, User) {
+.controller('DiscoverCtrl', function($scope, $timeout, User, Recommendations) {
+  // get our first songs
+  Recommendations.getNextSongs()
+    .then(function(){
+      $scope.currentSong = Recommendations.queue[0];
+    });
   $scope.songs = [
     {
        "title":"Stealing Cinderella",
@@ -35,6 +40,9 @@ Controller for the discover page
 
     $scope.currentSong.rated = bool;
     $scope.currentSong.hide = true;
+
+    // prepare the next song
+    Recommendations.nextSong();
 
     $timeout(function(){
       // set the current song to one of our three songs
