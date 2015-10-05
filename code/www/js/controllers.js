@@ -9,6 +9,13 @@ Controller for the discover page
   Recommendations.getNextSongs()
     .then(function(){
       $scope.currentSong = Recommendations.queue[0];
+
+      // $timeout(function(){
+      //   // $timeout to allow animation to complete
+      //   $scope.currentSong = Recommendations.queue[0];
+      // }, 250);
+    });
+      Recommendations.playCurrentSong();
     });
  //  $scope.songs = [
  //    {
