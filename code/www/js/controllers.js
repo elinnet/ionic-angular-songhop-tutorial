@@ -9,6 +9,13 @@ Controller for the discover page
   Recommendations.getNextSongs()
     .then(function(){
       $scope.currentSong = Recommendations.queue[0];
+
+      $timeout(function() {
+      // $timeout to allow animation to complete
+      $scope.currentSong = Recommendations.queue[0];
+      }, 250);
+
+      Recommendations.playCurrentSong();
     });
  //  $scope.songs = [
  //    {
@@ -79,6 +86,10 @@ Controller for the favorites page
 /*
 Controller for our tab bar
 */
-.controller('TabsCtrl', function($scope) {
+.controller('TabsCtrl', function($scope, Recommendations) {
+  // stop audio when going to favourites page
+  $scope.enteringFavourites = function(){
+    Recommendations.haltAudio();
+  };
 
 });
