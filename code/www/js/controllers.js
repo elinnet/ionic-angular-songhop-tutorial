@@ -60,7 +60,7 @@ Controller for the discover page
 
     $scope.nextAlbumImg = function(){
       if(Recommendations.queue.length > 1){
-        return Recommendations.queu[1].image_large;
+        return Recommendations.queue[1].image_large;
       }
       return '';
     };
@@ -85,14 +85,17 @@ Controller for the favorites page
 /*
 Controller for our tab bar
 */
-.controller('TabsCtrl', function($scope, Recommendations) {
+.controller('TabsCtrl', function($scope, User, Recommendations) {
   // stop audio when going to favourites page
   $scope.enteringFavorites = function() {
     Recommendations.haltAudio();
+    User.newFavorites = 0;
   };
 
   $scope.leavingFavorites = function(){
     Recommendations.init();
-  };
+    // expose the number of new favorites to the scope
+    $scope.favCount = User.favoriteCount;
 
+  };
 });
