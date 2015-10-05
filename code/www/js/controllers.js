@@ -88,7 +88,7 @@ Controller for our tab bar
 */
 .controller('TabsCtrl', function($scope, Recommendations) {
   // stop audio when going to favourites page
-  $scope.enteringFavourites = function(){
+  $scope.enteringFavorites = function() {
     Recommendations.haltAudio();
   };
 
