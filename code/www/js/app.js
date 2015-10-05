@@ -15,11 +15,8 @@ angular.module('songhop', ['ionic', 'songhop.controllers'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-
-
   });
 })
-
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -40,29 +37,35 @@ angular.module('songhop', ['ionic', 'songhop.controllers'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.discover', {
-    url: '/discover',
+.state('tab.discover', {
+  url: '/discover',
+  views: {
+    'tab-discover': {
+      templateUrl: 'templates/discover.html',
+      controller: 'DiscoverCtrl'
+    }
+  }
+})
+
+.state('tab.favorites', {
+    url: '/favorites',
     views: {
-      'tab-discover': {
-        templateUrl: 'templates/discover.html',
-        controller: 'DiscoverCtrl'
+      'tab-favorites': {
+        templateUrl: 'templates/favorites.html',
+        controller: 'FavoritesCtrl'
       }
     }
   })
 
-  .state('tab.favorites', {
-      url: '/favorites',
-      views: {
-        'tab-favorites': {
-          templateUrl: 'templates/favorites.html',
-          controller: 'FavoritesCtrl'
-        }
-      }
-    });
+  .state('splash',{
+    url: '/',
+    templateUrl: 'templates/splash.html',
+    controller: 'SplashCtrl'
+  });
   // If none of the above states are matched, use this as the fallback:
-  $urlRouterProvider.otherwise('/tab/discover');
+  $urlRouterProvider.otherwise('/');
 
-})
+  })
 
 
 .constant('SERVER', {
