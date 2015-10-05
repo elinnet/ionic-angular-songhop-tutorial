@@ -8,7 +8,7 @@ Controller for the discover page
   // get our first songs
   Recommendations.getNextSongs()
     .then(function(){
-      $scope.currentSong = Recommendations.queue[0];
+      // $scope.currentSong = Recommendations.queue[0];
 
       $timeout(function() {
       // $timeout to allow animation to complete

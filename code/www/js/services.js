@@ -23,16 +23,10 @@ angular.module('songhop.services', [])
 
     return o;
   })
-<<<<<<< HEAD
-  .factory('Recommendations',function($http,SERVER,$q){
-    var media;
-
-=======
   .factory('Recommendations',function($q, $http, SERVER){
     var media;
 
 
->>>>>>> a93f552
     var o = {
       queue: []
     };
@@ -72,18 +66,6 @@ angular.module('songhop.services', [])
     o.nextSong = function(){
       // pop the index 0 off
       o.queue.shift();
-<<<<<<< HEAD
-
-      // end the song
-      o.haltAudio();
-
-      // low on the queue? let's fill it up
-      if (o.queue.length <= 3) {
-        o.getNextSongs();
-      }
-    };
-=======
->>>>>>> a93f552
 
       // end the song
       o.haltAudio();
