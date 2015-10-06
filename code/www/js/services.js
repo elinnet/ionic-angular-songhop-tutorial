@@ -8,6 +8,16 @@ angular.module('songhop.services', ['ionic.utils'])
     newFavorites: 0
   };
 
+  // set session data
+  o.setSession = function(username, session_id, favorites) {
+    if (username) o.username = username;
+    if (session_id) o.session_id = session_id;
+    if (favorites) o.favorites = favorites;
+
+    // set data in localstorage object
+    $localstorage.setObject('user', { username: username, session_id: session_id });
+  };
+
     o.auth = function(username, signingUp){
 
     var authRoute;
@@ -73,7 +83,6 @@ angular.module('songhop.services', ['ionic.utils'])
   .factory('Recommendations',function($q, $http, SERVER){
     var media;
 
-
     var o = {
       queue: []
     };
@@ -112,6 +121,7 @@ angular.module('songhop.services', ['ionic.utils'])
 
 
     o.getNextSongs = function(){
+      console.log(123);
       return $http({
         method: 'GET',
         url: SERVER.url + '/recommendations'
@@ -155,15 +165,7 @@ angular.module('songhop.services', ['ionic.utils'])
       if (media) media.pause();
     };
 
-    // set session data
-    o.setSession = function(username, session_id, favorites) {
-      if (username) o.username = username;
-      if (session_id) o.session_id = session_id;
-      if (favorites) o.favorites = favorites;
 
-      // set data in localstorage object
-      $localstorage.setObject('user', { username: username, session_id: session_id });
-    };
 
     // check if there's a user session present
       o.checkSession = function() {
