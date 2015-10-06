@@ -90,7 +90,7 @@ Controller for the favorites page
 Controller for our tab bar
 */
 .controller('TabsCtrl', function($scope, User, Recommendations) {
-  // stop audio when going to favourites page
+  // stop audio when going to favorites page
   $scope.favCount = User.favoriteCount;
 
   $scope.enteringFavorites = function() {
@@ -101,18 +101,20 @@ Controller for our tab bar
   $scope.leavingFavorites = function(){
     Recommendations.init();
     // expose the number of new favorites to the scope
+  };
+})
 
-  }
+.controller('SplashCtrl', function($scope, User, $state){
 
-  .controller('SplashCtrl', function($scope, User, $state){
-    $scope.submitForm = function(username, signingUp){
-      User.auth(username,signingUp).then(function(){
-        // session is now set, so lets redirect to discover page
-        $state.go('tab.discover');
-      }, function(){
-        // error handling here
-        alert('Hmm.. try another username.');
-      });
-    };
-  });
+  // attempt to signup/login via User.auth
+  $scope.submitForm = function(username, signingUp) {
+    User.auth(username, signingUp).then(function() {
+      //session is now set, so let's redirect to discover page
+      $state.go('tab.discover');
+
+    }, function() {
+      //error handling
+      alert('Hmm... try another username.');
+    });
+  };
 });
